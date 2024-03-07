@@ -1,9 +1,4 @@
 /* Setting main styles */
-* {
-  font-family: system-ui, sans-serif;
-  font-weight: 100;
-}
-
 @font-face {
   font-family: "BigBlock";
   src: url("./fonts/Rockybilly.ttf");
@@ -11,16 +6,29 @@
   font-style: normal;
 }
 
+* {
+  font-family: system-ui, sans-serif;
+  font-weight: 100;
+}
+
+:root {
+  --primary-color: hsl(0, 0%, 21%);
+  --secondary-color: hsl(294, 25%, 39%);
+  --tertiary-color: hsl(279, 60%, 25%);
+  --success-color: hsl(134, 37%, 22%);
+  --error-color: hsl(354, 70%, 54%);
+}
+
 a,
 a:visited {
   font-weight: 500;
-  color: rgba(15, 70, 80, 0.7);
+  color: var(--tertiary-color);
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
-  color: rgba(15, 70, 80, 1);
+  color: var(--secondary-color);
 }
 
 .footer-link {
@@ -30,16 +38,11 @@ a:hover {
 /* Primary div container styling */
 #main {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(14, 14, 29, 0.8);
-  background-image: url("./images/modernBG.jpg");
+  justify-content: center;
+  background-color: var(--tertiary-color);
+  background-image: url("./images/purplegoop.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
 }
 
 #photo-bg {
@@ -47,28 +50,42 @@ a:hover {
   position: relative;
 }
 
-/* Where all the main text goes */
+/* Main div where all the main text goes */
 #main-content {
+  height: 100vh;
   width: 66.6666vw;
+  overflow-x: hidden;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
   flex-wrap: wrap;
+  align-content: center;
   background-color: rgba(240, 240, 240, 0.98);
-  position: relative;
 }
 
 /* Sign up form styles */
 #sign-up {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70vw;
+  max-width: 100%;
+  margin: 0 auto;
   background-color: rgb(250, 250, 250);
   border: rgb(245, 245, 245);
   box-shadow: 1px 1px 10px #d6d6d6;
-  width: 100%;
-  padding: 2rem;
-  margin: 0px;
+  padding-bottom: 30px;
 }
 
-.footer {
+#create-account {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  width: 75%;
+  padding: 0 0 0 3rem;
+  margin: 50px 0px 50px 0px;
+}
+
+#footer {
   text-align: center;
   padding: 20px 0 20px 0;
   background-color: rgba(000, 000, 000, 0.6);
@@ -80,12 +97,12 @@ a:hover {
 }
 
 /* KGD Designs */
+
 .header {
   position: relative;
-  margin: 0;
   background-color: rgba(000, 000, 000, 0.6);
   color: rgba(999, 999, 999, 0.9);
-  top: 10%;
+  top: 10vh;
   text-align: center;
   font-size: calc(0.8rem + 1vw);
   font-family: "BigBlock", sans-serif;
@@ -94,23 +111,23 @@ a:hover {
 #message {
   display: flex;
   flex-wrap: wrap;
-  width: 90%;
-  padding-left: 30px;
+  width: 100%;
+  padding: 0 3rem 0 3rem;
   font-weight: 20;
-  font-size: 1.5em;
-  line-height: 1.6em;
-  overflow: auto;
+  font-size: calc(0.7rem + 0.5rem);
+  line-height: 1.2em;
 }
 
 .hooray {
   font-weight: 100;
   font-size: 1.5em;
   line-height: 1.6em;
+  padding: 2rem 0 0 3rem;
 }
 
 label {
   font-size: 0.75em;
-  padding-bottom: 5px;
+  padding-bottom: 2px;
   font-weight: 300;
 }
 
@@ -128,6 +145,7 @@ input {
   align-items: flex-start;
   flex-wrap: wrap;
   width: 100%;
+  padding: 0 0 0 3rem;
 }
 
 #form-row {
@@ -139,18 +157,51 @@ input {
   margin-bottom: 10px;
 }
 
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"] {
+  outline: 0;
+  border: 5px solid black;
+}
+
+input[type="text"]:invalid,
+input[type="email"]:invalid,
+input[type="password"]:invalid {
+  border: 2px solid var(--secondary-color);
+  box-shadow: none;
+}
+
+input[type="text"]:valid,
+input[type="email"]:valid,
+input[type="password"]:valid,
+input[type="tel"]:valid {
+  border: 1px solid var(--tertiary-color);
+  color: var(--secondary-color);
+  font-weight: 500;
+  box-shadow: none;
+}
+
+::placeholder {
+  color: hsl(0, 0%, 89%);
+}
+
 #form-input {
   display: flex;
   flex-direction: column;
   padding-right: 75px;
 }
 
-#create-account {
-  padding-top: 50px;
+#passwordError {
+  font-size: 0.55rem;
+  font-weight: bold;
+  position: absolute;
+  color: red;
+  margin-top: 50px;
 }
 
 #create-account button {
-  background-color: rgba(15, 70, 80, 0.7);
+  background-color: var(--tertiary-color);
   color: white;
   font-size: 1rem;
   font-weight: 500;
@@ -158,10 +209,9 @@ input {
   border-radius: 10px;
   padding: 10px 30px 10px 30px;
   margin-right: 30px;
-  margin-left: 30px;
 }
 
 #create-account button:hover {
-  background-color: rgba(15, 70, 80, 1);
+  background-color: var(--secondary-color);
   cursor: pointer;
 }
